@@ -1,14 +1,12 @@
-<?php
-	
-	if(!$this->session->userdata('username')):
-?>
 
-<h2>Login Form</h2>
+<h2>Create Task</h2>
 
 <?php 
-$attribute=array('id'=>'login_form','class'=>'form-horizontal');
+$attribute=array('id'=>'create_task','class'=>'form-horizontal');
 
 	
+echo validation_errors('<p class="bg-danger">');
+
 if($this->session->flashdata('errors')):
 	echo $this->session->flashdata('errors');
 endif;
@@ -17,7 +15,9 @@ endif;
 
 
 
-<?php echo form_open('users/login',$attribute);?>
+<?php echo form_open('tasks/create',$attribute);?>
+
+
 
 <div class="form-group">
 
@@ -25,12 +25,11 @@ endif;
 
 		$data=array(
 			'class'=>'form-control',
-			'name'=>'username',
-			'placeholder'=>'Enter Username',
-			'value'=>set_value('username')
+			'name'=>'task_name',
+			'placeholder'=>'Enter Task Name'
 		);
 
-		echo form_label('Username');
+		echo form_label('Task name');
 		echo '<br>';
 		echo form_input($data);
 
@@ -38,20 +37,20 @@ endif;
 	
 </div>
 
+
+
 <div class="form-group">
 
 	<?php	
 
 		$data=array(
 			'class'=>'form-control',
-			'name'=>'password',
-			'placeholder'=>'Enter Password',
-			'value'=>set_value('password')
+			'name'=>'Task_body'
 		);
 
-		echo form_label('Password');
+		echo form_label('Task Body');
 		echo '<br>';
-		echo form_password($data);
+		echo form_textarea($data);
 
 	?>
 	
@@ -65,7 +64,7 @@ endif;
 		$data=array(
 			'class'=>'btn btn-default',
 			'name'=>'submit',
-			'value'=>'submit'
+			'value'=>'Create'
 		);
 
 		echo form_submit($data);
@@ -75,6 +74,4 @@ endif;
 </div>
 
 <?php echo form_close();
-
-endif;
 ?> 
